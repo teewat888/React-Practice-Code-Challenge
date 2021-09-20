@@ -1,23 +1,22 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from "react";
 
-const Sushi = ({sushi}) => {
+const Sushi = ({ sushi, eatenSushi, eatenSushis }) => {
+  const handleOnClick = () => {
+    eatenSushi(sushi);
+  };
+
   return (
     <div className="sushi">
-      <div className="plate" 
-           onClick={/* Give me a callback! */ null}>
-        { 
-          /* Tell me if this sushi has been eaten! */ 
-          false ?
-            null
-          :
-            <img src={sushi.img_url} width="100%" />
-        }
+      <div className="plate" onClick={handleOnClick}>
+        {eatenSushis.find((eatenSushi) => eatenSushi.id === sushi.id) ? null : (
+          <img src={sushi.img_url} width="100%" />
+        )}
       </div>
       <h4 className="sushi-details">
         {sushi.name} - ${sushi.price}
       </h4>
     </div>
-  )
-}
+  );
+};
 
-export default Sushi
+export default Sushi;

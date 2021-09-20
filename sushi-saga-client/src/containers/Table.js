@@ -1,18 +1,23 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from "react";
 
-const Table = (props) => {
-
+const Table = ({ eatenSushis, balance, enoughMoney }) => {
   const renderPlates = (array) => {
     return array.map((x, index) => {
-      return <div className="empty-plate" style={{ top: -7 * index }}/>
-    })
-  }
+      return (
+        <div className="empty-plate" style={{ top: -7 * index }} key={x.id} />
+      );
+    });
+  };
 
   return (
     <Fragment>
-      <h1 className="remaining">
-        You have: ${ /* Give me how much money I have left */ } remaining!
-      </h1>
+      {enoughMoney ? (
+        <h1 className="remaining">You have: ${balance} remaining!</h1>
+      ) : (
+        <h1 className="remaining">
+          You dont have enough money, please try another one! (${balance} left)
+        </h1>
+      )}
       <div className="table">
         <div className="stack">
           {
@@ -21,12 +26,12 @@ const Table = (props) => {
                and renders an empty plate
                for every element in the array
             */
-            renderPlates([])
+            renderPlates(eatenSushis)
           }
         </div>
       </div>
     </Fragment>
-  )
-}
+  );
+};
 
-export default Table
+export default Table;
